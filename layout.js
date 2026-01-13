@@ -64,4 +64,72 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }
+
+    // ==========================================
+    // 4. COOKIE BANNER HINZUFÜGEN
+    // ==========================================
+    const cookieHTML = `
+    <div id="cookie-banner" style="display: none;">
+        <div class="cookie-content">
+            <h3>🍪 Cookie-Einstellungen</h3>
+            <p>
+                Wir nutzen Cookies, um die Website zu verbessern. 
+                Einige sind technisch notwendig, andere helfen uns bei der Analyse.
+                <a href="datenschutz.html">Mehr erfahren</a>.
+            </p>
+            <div class="cookie-buttons">
+                <button id="cookie-accept">Alle akzeptieren</button>
+                <button id="cookie-decline">Nur notwendige</button>
+            </div>
+        </div>
+    </div>
+    `;
+    document.body.insertAdjacentHTML("beforeend", cookieHTML);
+
+    // ==========================================
+    // 5. COOKIE LOGIK (Consent Manager)
+    // ==========================================
+
+    const banner = document.getElementById("cookie-banner");
+    const acceptBtn = document.getElementById("cookie-accept");
+    const declineBtn = document.getElementById("cookie-decline");
+
+    // Funktion: Externe Skripte laden (z.B. Google Analytics)
+    function loadAnalytics() {
+        console.log("Analytics Cookies erlaubt - Lade Tracking...");
+        // HIER kommt später dein Google Analytics Code rein!
+        // Beispiel:
+        // let script = document.createElement('script');
+        // script.src = "https://www.googletagmanager.com/gtag/js?id=DEIN-ID";
+        // document.head.appendChild(script);
+    }
+
+    // Prüfen: Wurde schon eine Entscheidung getroffen?
+    const consent = localStorage.getItem("cookieConsent");
+
+    if (!consent) {
+        // Noch keine Entscheidung -> Banner anzeigen
+        if(banner) banner.style.display = "block";
+    } else if (consent === "accepted") {
+        // Schon erlaubt -> Analytics direkt laden
+        loadAnalytics();
+    }
+
+    // Klick auf "Akzeptieren"
+    if (acceptBtn) {
+        acceptBtn.addEventListener("click", function() {
+            localStorage.setItem("cookieConsent", "accepted");
+            banner.style.display = "none";
+            loadAnalytics(); // Jetzt starten!
+        });
+    }
+
+    // Klick auf "Ablehnen" (Nur notwendige)
+    if (declineBtn) {
+        declineBtn.addEventListener("click", function() {
+            localStorage.setItem("cookieConsent", "declined");
+            banner.style.display = "none";
+            // KEIN loadAnalytics() aufrufen!
+        });
+    }
 });
