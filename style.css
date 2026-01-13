@@ -62,6 +62,12 @@ nav a:hover {
     background-color: #00d2ff;
 }
 
+/* --- AKTIVER MENU-PUNKT --- */
+nav a.active {
+    color: #1a0b2e !important;       /* Dunkle Schrift erzwingen */
+    background-color: #00d2ff;       /* Dein Cyan-Blau */
+}
+
 /* --- HAUPTBEREICH (MAIN) --- */
 main {
     max-width: 1000px;
@@ -465,4 +471,16 @@ footer {
     color: rgba(255, 255, 255, 0.7);
     margin-top: 40px;
     font-size: 0.85rem;
+}
+
+/* --- FOOTER LINKS --- */
+footer a {
+    color: rgba(255, 255, 255, 0.7); /* Gleiche Farbe wie der Text */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #00d2ff; /* Deine Akzentfarbe beim Drüberfahren */
+    text-decoration: underline;
 }
