@@ -1,7 +1,6 @@
-/* --- GRUNDEINSTELLUNGEN --- */
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 140px; /* Verhindert, dass der Header Text verdeckt */
+    scroll-padding-top: 140px;
 }
 
 body {
@@ -13,7 +12,6 @@ body {
     background-color: #f9f9f9;
 }
 
-/* --- HEADER & NAVIGATION --- */
 header {
     background-color: #1a0b2e;
     color: white;
@@ -62,13 +60,11 @@ nav a:hover {
     background-color: #00d2ff;
 }
 
-/* --- AKTIVER MENU-PUNKT --- */
 nav a.active {
-    color: #1a0b2e !important;       /* Dunkle Schrift erzwingen */
-    background-color: #00d2ff;       /* Dein Cyan-Blau */
+    color: #1a0b2e !important;
+    background-color: #00d2ff;
 }
 
-/* --- HAUPTBEREICH (MAIN) --- */
 main {
     max-width: 1000px;
     margin: 20px auto;
@@ -90,7 +86,19 @@ h1, h2, h3 {
     text-align: center;
 }
 
-/* --- ÜBERSCHRIFTEN (H2) --- */
+section {
+    margin-bottom: 75px; 
+    position: relative;
+}
+
+section:last-of-type {
+    margin-bottom: 10px;
+}
+
+.services-grid {
+    margin-bottom: 10px;
+}
+
 h2 {
     position: relative;
     padding-bottom: 10px;
@@ -111,7 +119,6 @@ h2::after {
     border-radius: 2px;
 }
 
-/* --- HERO SECTION (Start) --- */
 #start {
     text-align: center;
     padding: 60px 20px;
@@ -151,7 +158,6 @@ h2::after {
     background-color: #ffffff;
 }
 
-/* --- SERVICES (Grid Layout) --- */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -195,7 +201,6 @@ article p {
     margin: 0;
 }
 
-/* --- ÜBER MICH (Zentriert) --- */
 #about {
     display: flex;
     flex-direction: column;
@@ -233,7 +238,6 @@ article p {
     color: #666;
 }
 
-/* --- KONTAKT (Zentriert) --- */
 #contact {
     display: flex;
     flex-direction: column;
@@ -276,7 +280,6 @@ article p {
     font-weight: bold;
 }
 
-/* --- MODAL / POPUP KONTAKTFORMULAR --- */
 .modal {
     display: none; 
     position: fixed; 
@@ -292,7 +295,7 @@ article p {
 
 .modal-content {
     background-color: #fefefe;
-    margin: 5% auto; /* 5% Abstand von oben */
+    margin: 5% auto;
     padding: 30px;
     border: 1px solid #888;
     width: 90%;
@@ -308,10 +311,8 @@ article p {
     to {transform: translateY(0); opacity: 1;}
 }
 
-/* --- CSS UPDATE: SCHLIESSEN-BUTTON (Gezeichnetes X) --- */
 .close-btn {
-    /* Die runde Basis */
-    position: absolute; /* Damit wir es exakt platzieren können */
+    position: absolute;
     right: 20px;
     top: 20px;
     width: 40px;
@@ -320,46 +321,38 @@ article p {
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
-    
-    /* Flexbox nicht mehr nötig, wir nutzen absolute Positionierung für die Striche */
 }
 
-/* Wir zeichnen die beiden Striche des X */
 .close-btn::before, 
 .close-btn::after {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 20px;  /* Breite des X */
-    height: 3px;  /* Dicke der Striche */
-    background-color: #666; /* Farbe des X */
+    width: 20px;
+    height: 3px;
+    background-color: #666;
     border-radius: 2px;
 }
 
-/* Der erste Strich (45 Grad gedreht) */
 .close-btn::before {
     transform: translate(-50%, -50%) rotate(45deg);
 }
 
-/* Der zweite Strich (-45 Grad gedreht) */
 .close-btn::after {
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-/* Hover-Effekt */
 .close-btn:hover {
-    background-color: #d93025; /* Roter Hintergrund */
-    transform: rotate(90deg);  /* Knopf dreht sich */
+    background-color: #d93025;
+    transform: rotate(90deg);
 }
 
-/* WICHTIG: Beim Hover müssen die Striche weiß werden */
 .close-btn:hover::before,
 .close-btn:hover::after {
     background-color: white;
 }
 
-/* --- FORMULAR STYLING --- */
 .modal form {
     display: flex;
     flex-direction: column;
@@ -387,7 +380,7 @@ article p {
 }
 
 .required {
-    color: #d93025; /* Roter Stern */
+    color: #d93025;
     font-weight: bold;
     margin-left: 3px;
 }
@@ -398,8 +391,8 @@ article p {
     border-radius: 5px;
     font-family: inherit;
     font-size: 1rem;
-    width: 100%; /* Wichtig, damit sie nicht aus der Box ragen */
-    box-sizing: border-box; /* Verhindert Layout-Probleme durch Padding */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .modal input:focus, .modal textarea:focus {
@@ -426,19 +419,17 @@ article p {
     color: #1a0b2e;
 }
 
-/* --- FIX FÜR DAS TEXTFELD --- */
 .modal textarea {
-    resize: vertical;  /* WICHTIG: Erlaubt nur Ziehen nach unten */
-    max-height: 350px; /* Optional: Damit es nicht höher als 200px gezogen werden kann */
-    min-height: 80px;  /* Optional: Damit man es nicht winzig klein machen kann */
-    width: 100%;       /* Zwingt es dazu, immer die volle Breite zu behalten */
+    resize: vertical;
+    max-height: 350px;
+    min-height: 80px;
+    width: 100%;
 }
 
-/* --- TEXT UNTER DER ÜBERSCHRIFT ZENTRIEREN --- */
 .modal-content p {
-    text-align: center;      /* Text mittig */
-    margin-bottom: 25px;     /* Mehr Abstand zu den Feldern */
-    color: #555;             /* Etwas dunkleres Grau für gute Lesbarkeit */
+    text-align: center;
+    margin-bottom: 25px;
+    color: #555;
 }
 
 .form-info {
@@ -447,7 +438,7 @@ article p {
 }
 
 #close-success-btn {
-    background-color: #2b1055; /* Deine Hauptfarbe statt Grün */
+    background-color: #2b1055;
     width: 100%;
 }
 #close-success-btn:hover {
@@ -455,7 +446,6 @@ article p {
     color: #1a0b2e;
 }
 
-/* Mobile Optimierung für das Formular */
 @media (max-width: 500px) {
     .name-row {
         flex-direction: column;
@@ -463,7 +453,6 @@ article p {
     }
 }
 
-/* --- FOOTER --- */
 footer {
     text-align: center;
     padding: 30px 20px;
@@ -473,93 +462,80 @@ footer {
     font-size: 0.85rem;
 }
 
-/* --- FOOTER LINKS --- */
 footer a {
-    color: rgba(255, 255, 255, 0.7); /* Gleiche Farbe wie der Text */
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     transition: color 0.3s;
 }
 
 footer a:hover {
-    color: #00d2ff; /* Deine Akzentfarbe beim Drüberfahren */
+    color: #00d2ff;
     text-decoration: underline;
 }
 
-/* =========================================
-   MOBILE OPTIMIERUNG (Responsive Design)
-   ========================================= */
-
 @media (max-width: 768px) {
     
-    /* 1. VERHINDERN VOM SEITLICHEN SCROLLEN (Weißer Rand) */
     html, body {
-        overflow-x: hidden; /* Schneidet alles ab, was seitlich übersteht */
+        overflow-x: hidden;
         width: 100%;
         position: relative;
     }
 
-    /* 2. HEADER ANPASSEN (Logo oben, Menü unten drunter) */
     nav {
-        flex-direction: column; /* Elemente untereinander statt nebeneinander */
+        flex-direction: column;
         padding: 15px 10px;
     }
 
     nav ul {
-        flex-wrap: wrap;        /* Erlaubt den Links, in die nächste Zeile zu rutschen */
-        justify-content: center; /* Zentriert die Links */
-        gap: 10px;              /* Weniger Abstand zwischen den Links */
-        margin-top: 15px;       /* Abstand zum Logo */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
         width: 100%;
     }
 
     nav a {
-        font-size: 0.85rem;     /* Schrift etwas kleiner machen */
-        padding: 8px 10px;      /* Buttons etwas kompakter */
-        display: inline-block;  /* Wichtig für Padding */
+        font-size: 0.85rem;
+        padding: 8px 10px;
+        display: inline-block;
     }
 
-    /* 3. HAUPTBEREICH (MAIN) KOMPAKTER MACHEN */
     main {
-        padding: 20px 15px;     /* Weniger Innenabstand an den Seiten */
+        padding: 20px 15px;
         margin: 10px auto;
-        width: 90%;             /* Damit es sicher auf den Schirm passt */
+        width: 90%;
     }
 
-    /* 4. SCHRIFTGRÖSSEN ANPASSEN */
     h1 {
-        font-size: 1.6rem !important; /* Überschrift kleiner */
+        font-size: 1.6rem !important;
     }
     
     h2 {
         font-size: 1.4rem;
     }
 
-    /* 5. SERVICES GRID (Eins nach dem anderen) */
     .services-grid {
-        grid-template-columns: 1fr; /* Zwingt die Boxen in eine einzelne Spalte */
+        grid-template-columns: 1fr;
         padding: 0 10px;
     }
 
-    /* 6. MODAL / KONTAKTFORMULAR MOBIL */
     .modal-content {
-        width: 95%;             /* Fast volle Breite nutzen */
-        margin: 15% auto;       /* Etwas mehr Abstand oben */
+        width: 95%;
+        margin: 15% auto;
         padding: 20px;
     }
     
     .name-row {
-        flex-direction: column; /* Vorname/Nachname untereinander */
+        flex-direction: column;
         gap: 0;
     }
     
-    /* Bilder responsive machen */
     img {
-        max-width: 100%;    /* Bild darf nie breiter sein als sein Container */
-        height: auto;       /* Höhe passt sich automatisch an */
+        max-width: 100%;
+        height: auto;
     }
 }
 
-/* Styling für den Logo-Link im Header */
 nav > a {
     display: flex;
     text-decoration: none;
@@ -573,25 +549,17 @@ nav > a img:hover {
     transform: scale(1.05);
 }
 
-/* =========================================
-   LOGO SPEZIAL-STYLES (Angepasst)
-   ========================================= */
-
 #logo-link {
     background-color: transparent !important; 
     padding: 0 !important; 
     display: flex;
     align-items: center;
-    /*margin-right: 10px; Etwas Abstand zum Text "Home" */
 }
 
 #logo-link img {
     border-radius: 50%; 
-    
-    /* --- HIER DIE ÄNDERUNG: KLEINER MACHEN --- */
     width: 85px;
     height: 85px;
-    
     object-fit: cover; 
     border: 1px solid transparent; 
     transition: all 0.3s ease;
@@ -600,25 +568,23 @@ nav > a img:hover {
 #logo-link:hover img {
     transform: scale(1.05); 
     border-color: #00d2ff; 
-    /*box-shadow: 0 0 10px rgba(0, 210, 255, 0.6);*/
 }
 
-/* --- COOKIE BANNER (DSGVO Konform) --- */
 #cookie-banner {
     position: fixed;
     bottom: 20px;
     left: 20px;
     right: 20px;
-    max-width: 600px; /* Etwas breiter für den Text */
+    max-width: 600px;
     background-color: #fff;
-    border-left: 5px solid #00d2ff; /* Dein Cyan-Akzent */
+    border-left: 5px solid #00d2ff;
     border-radius: 8px;
     box-shadow: 0 5px 30px rgba(0,0,0,0.2);
     padding: 25px;
     z-index: 9999;
     font-family: 'Segoe UI', sans-serif;
     animation: slideUp 0.5s ease;
-    font-size: 0.95rem; /* Gut lesbare Schriftgröße */
+    font-size: 0.95rem;
     line-height: 1.5;
 }
 
@@ -638,34 +604,30 @@ nav > a img:hover {
     color: #2b1055;
 }
 
-/* Links im Text */
 .cookie-links-text a {
     color: #0077b5;
     text-decoration: underline;
 }
 
-/* Button Container */
 .cookie-buttons {
     display: flex;
     gap: 15px;
-    justify-content: flex-end; /* Rechtsbündig */
+    justify-content: flex-end;
     margin-top: 20px;
-    flex-wrap: wrap; /* Falls der Platz am Handy eng wird */
+    flex-wrap: wrap;
 }
 
-/* Buttons Styling - Beide gut sichtbar */
 #cookie-accept, #cookie-decline {
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
     font-weight: 600;
     font-size: 0.95rem;
-    flex: 1; /* Beide Buttons nehmen gleich viel Platz ein (Mobil) */
+    flex: 1;
     text-align: center;
     transition: all 0.2s ease;
 }
 
-/* Button: Alle akzeptieren */
 #cookie-accept {
     background-color: #1a0b2e; 
     color: white;
@@ -677,24 +639,21 @@ nav > a img:hover {
     color: #1a0b2e;
 }
 
-/* Button: Nur notwendige (Gleichwertig, aber visuell unterscheidbar) */
 #cookie-decline {
     background-color: white;
     color: #1a0b2e;
-    border: 2px solid #ccc; /* Deutlicher Rand statt unsichtbar */
+    border: 2px solid #ccc;
 }
 #cookie-decline:hover {
     border-color: #1a0b2e;
     background-color: #f0f0f0;
 }
 
-/* Animation */
 @keyframes slideUp {
     from { transform: translateY(100px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* Mobile Optimierung */
 @media (max-width: 600px) {
     #cookie-banner {
         left: 10px;
@@ -703,9 +662,9 @@ nav > a img:hover {
         padding: 20px;
     }
     .cookie-buttons {
-        flex-direction: column-reverse; /* "Alle akzeptieren" rutscht nach oben */
+        flex-direction: column-reverse;
     }
     #cookie-accept, #cookie-decline {
-        width: 100%; /* Volle Breite am Handy */
+        width: 100%;
     }
 }
