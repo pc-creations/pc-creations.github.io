@@ -150,12 +150,13 @@ h2::after {
     font-weight: bold;
     border-radius: 30px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: all 0.2s ease; 
 }
 
 #start button:hover {
     transform: scale(1.05);
     background-color: #ffffff;
+    color: #1a0b2e;
 }
 
 .services-grid {
@@ -554,11 +555,9 @@ footer {
 }
 
 @media (max-width: 768px) {
-    
     html, body {
         overflow-x: hidden;
         width: 100%;
-        position: relative;
     }
 
     nav {
@@ -574,29 +573,29 @@ footer {
         width: 100%;
     }
 
-    nav a {
-        font-size: 0.85rem;
-        padding: 8px 10px;
-        display: inline-block;
-    }
-
     main {
-        padding: 20px 15px;
-        margin: 10px auto;
         width: 90%;
-    }
-
-    h1 {
-        font-size: 1.6rem !important;
-    }
-    
-    h2 {
-        font-size: 1.4rem;
+        margin: 10px auto;
+        padding: 20px 15px;
     }
 
     .services-grid {
+        display: grid;
         grid-template-columns: 1fr;
-        padding: 0 10px;
+        gap: 60px;
+        padding: 0 5px;
+    }
+
+    article {
+        margin-bottom: 0;
+        transform: translateZ(0); 
+    }
+
+    article:hover {
+        transform: none !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+        border-color: #00d2ff;
+        z-index: 1;
     }
 
     .modal-content {
@@ -608,11 +607,6 @@ footer {
     .name-row {
         flex-direction: column;
         gap: 0;
-    }
-    
-    img {
-        max-width: 100%;
-        height: auto;
     }
 }
 
