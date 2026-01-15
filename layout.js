@@ -23,13 +23,15 @@ document.addEventListener("DOMContentLoaded", function() {
     <footer>
         <div class="footer-content">
             <div class="footer-left">
-                &copy; 2022 - 2026 PC-Creations by Samuel.<br>Alle Rechte vorbehalten.
+                &copy; 2026 PC-Creations.<br>Alle Rechte vorbehalten.
             </div>
             
             <div class="footer-center">
                 <a href="impressum.html">Impressum</a>
                 <span class="separator">|</span>
                 <a href="datenschutz.html">Datenschutz</a>
+                <span class="separator">|</span>
+                <a href="#" id="open-cookie-settings">Cookie-Einstellungen</a>
             </div>
 
             <div class="footer-right social-icons">
@@ -77,11 +79,15 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="cookie-content">
             <h3>🍪 Cookie-Einstellungen</h3>
             <p>
-                Wir nutzen Cookies auf unserer Website. Einige von ihnen sind essenziell, während andere uns helfen, diese Website zu verbessern.
+                Wir nutzen Cookies und externe Dienste. Einige sind essenziell (für die Funktion der Seite). 
+                Andere helfen uns, diese Webseite zu verbessern (Statistiken).
+                Da wir <strong>Google Analytics</strong> nutzen, können Daten in die USA übertragen werden. 
+                Mit Klick auf "Alle akzeptieren" willigen Sie in diese Verarbeitung ein.
             </p>
             <p class="cookie-links-text">
-                Sie können Ihre Entscheidung jederzeit ändern. Details zur Datennutzung finden Sie unter 
-                <a href="datenschutz.html">Mehr erfahren</a>.
+                Sie können Ihre Entscheidung jederzeit ändern oder widerrufen.
+                <br>
+                <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
             </p>
             
             <div class="cookie-buttons">
@@ -127,8 +133,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (declineBtn) {
         declineBtn.addEventListener("click", function() {
+            const wasAccepted = localStorage.getItem("cookieConsent") === "accepted";
+            
             localStorage.setItem("cookieConsent", "declined");
             if(banner) banner.style.display = "none";
+
+            if (wasAccepted) {
+                location.reload(); 
+            }
+        });
+    }
+
+    const settingsLink = document.getElementById("open-cookie-settings");
+    if (settingsLink) {
+        settingsLink.addEventListener("click", function(e) {
+            e.preventDefault();
+            if(banner) banner.style.display = "block";
         });
     }
 });
