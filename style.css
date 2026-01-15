@@ -295,9 +295,17 @@ article p {
 }
 
 #contact a {
-    color: #008cac;
+    color: #007a96;
     text-decoration: none;
     font-weight: bold;
+}
+
+.map-container {
+  margin-top: 15px;
+  width: 450px;
+  height: 250px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .modal {

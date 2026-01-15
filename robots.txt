@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://pc-creations.github.io/sitemap.xml
