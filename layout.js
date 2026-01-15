@@ -1,16 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-
-    const link = document.createElement('link');
-    link.rel = 'icon';
-    link.type = 'image/jpeg';
-    link.href = 'logo.jpg';
-    document.head.appendChild(link);
-    
-    const appleLink = document.createElement('link');
-    appleLink.rel = 'apple-touch-icon';
-    appleLink.href = 'logo.jpg';
-    document.head.appendChild(appleLink);
-
     const headerHTML = `
     <header>
         <nav>
