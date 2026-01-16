@@ -811,3 +811,36 @@ nav > a img:hover {
         width: 100%;
     }
 }
+
+.privacy-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 15px 0 20px 0;
+    text-align: left;
+}
+
+.privacy-check input[type="checkbox"] {
+    width: auto;
+    margin-top: 5px;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.privacy-check label {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: #555;
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+.privacy-check a {
+    color: #1a0b2e;
+    text-decoration: underline;
+}
+
+.privacy-check a:hover {
+    color: #00d2ff;
+}
