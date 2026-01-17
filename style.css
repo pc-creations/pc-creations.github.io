@@ -70,7 +70,12 @@ h2::after {
 p { margin-bottom: 15px; color: #444; }
 a { text-decoration: none; color: #007a96; transition: color 0.3s; }
 a:hover { color: var(--color-accent); }
-hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, #ddd, transparent); margin: 40px 0; }
+hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ccc, transparent);
+    margin: 20px 0;
+}
 img { max-width: 100%; height: auto; }
 
 .contact-info-email {
@@ -306,17 +311,35 @@ article:hover .service-icon { background-color: var(--color-dark); color: var(--
 }
 #about em { display: block; margin: 10px 0 25px; font-style: italic; color: var(--color-text-light); }
 
-#contact ul { list-style: none; padding: 0; width: 100%; max-width: 500px; margin: 0 auto; }
-#contact li {
+.contact-list { 
+    list-style: none; 
+    padding: 0; 
+    width: 100%; 
+    max-width: 500px; 
+    margin: 0 auto; 
+}
+
+.contact-list li {
     background-color: #f0f4f8;
     margin-bottom: 15px;
     padding: 15px 20px;
     border-radius: 8px;
     border: 1px solid #e1e1e1;
     transition: transform 0.2s;
-    font-size: 1.1rem;
+    font-size: 1.1rem; 
+    text-align: center;
 }
-#contact li:hover { transform: scale(1.04); background-color: #fff; border-color: var(--color-accent); }
+
+.contact-list li:hover { 
+    transform: scale(1.04); 
+    background-color: #fff; 
+    border-color: var(--color-accent); 
+}
+
+.contact-list strong {
+    margin-bottom: 5px;
+    color: var(--color-primary);
+}
 
 .map-container { margin: 15px auto; width: 450px; height: 250px; border-radius: 10px; overflow: hidden; max-width: 100%; }
 #map-placeholder { width: 100%; height: 100%; background: #eee; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #555; }
