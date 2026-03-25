@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt - PC-Creations</title>
-    <meta name="description" content="Kontaktieren Sie PC-Creations für IT-Support in Graz. Nutzen Sie das Kontaktformular oder schreiben Sie mir für eine unverbindliche Anfrage.">
+    <meta name="description"
+        content="Kontaktieren Sie PC-Creations für IT-Support in Graz. Nutzen Sie das Kontaktformular oder schreiben Sie mir für eine unverbindliche Anfrage.">
     <meta name="keywords" content="Kontakt PC-Creations, IT Support Anfrage, Termin vereinbaren, PC Hilfe Graz Kontakt">
     <meta name="author" content="Samuel Traussnig">
     <link rel="canonical" href="https://pc-creations.github.io/contact.html">
@@ -19,11 +21,11 @@
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
-    (function(){
-        emailjs.init({
-            publicKey: "q7jESIvscNX8JzD7w",
-        });
-    })();
+        (function () {
+            emailjs.init({
+                publicKey: "q7jESIvscNX8JzD7w",
+            });
+        })();
     </script>
 </head>
 
@@ -39,9 +41,10 @@
 
             <div class="contact-form-wrapper" style="margin: 0; width: 100%; max-width: 550px;">
                 <div id="form-container">
-                    
+
                     <form id="contact-form">
-                        <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
+                        <input type="text" name="_gotcha" style="display:none !important" tabindex="-1"
+                            autocomplete="off">
 
                         <div class="name-row">
                             <div class="input-group">
@@ -61,17 +64,19 @@
                         <input type="tel" id="phone" name="phone" placeholder="+43 ...">
 
                         <label for="message">Ihre Nachricht <span class="required">*</span></label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Ich brauche Hilfe bei..."></textarea>
+                        <textarea id="message" name="message" rows="5" required
+                            placeholder="Ich brauche Hilfe bei..."></textarea>
 
                         <div class="privacy-check">
                             <input type="checkbox" id="privacy-agree-page" name="privacy-agree" required>
                             <label for="privacy-agree-page">
-                                Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzrichtlinien</a> gelesen und bin damit einverstanden.
+                                Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzrichtlinien</a>
+                                gelesen und bin damit einverstanden.
                             </label>
                         </div>
 
                         <button type="submit" class="main-btn" style="width: 100%; margin-top: 25px;">Absenden</button>
-                        
+
                         <p id="form-error-msg" style="color: red; text-align: center; margin-top: 10px;"></p>
                     </form>
 
@@ -83,39 +88,37 @@
                 <div id="success-container" style="display: none; text-align: center; padding: 50px 0;">
                     <h2 style="color: #2b1055;">Vielen Dank!</h2>
                     <p>Ihre Nachricht wurde erfolgreich gesendet.<br>Ich melde mich in Kürze bei Ihnen.</p>
-                    <button onclick="location.reload()" class="main-btn" style="margin-top: 10px;">Neue Nachricht</button>
+                    <button onclick="location.reload()" class="main-btn" style="margin-top: 10px;">Neue
+                        Nachricht</button>
                 </div>
             </div>
 
             <div class="contact-info" style="text-align: center; width: 100%; max-width: 600px; margin-top: 50px;">
                 <ul class="contact-list">
                     <li>
-                        <strong>E-Mail:</strong> 
+                        <strong>E-Mail:</strong>
                         <a href="mailto:pccreationsbysamuel@gmail.com" class="contact-info-email">
                             pccreationsbysamuel@gmail.com
                         </a>
                     </li>
                     <li>
-                        <strong>Adresse:</strong> 
-                        <a href="https://www.google.com/maps/dir//Waagner-Biro-Stra%C3%9Fe+84a,+Lend+8020+Graz,+Austria/@47.0793083,15.4100881,1070m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x476e35a667e802bf:0xc2109ee96c2d9093!2m2!1d15.4119908!2d47.0790793?entry=ttu&g_ep=EgoyMDI2MDExMS4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-                            Waagner-Biro-Straße 84A, 8020 Graz 
+                        <strong>Adresse:</strong>
+                        <a href="https://www.google.com/maps/dir//Waagner-Biro-Stra%C3%9Fe+84a,+Lend+8020+Graz,+Austria/@47.0793083,15.4100881,1070m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x476e35a667e802bf:0xc2109ee96c2d9093!2m2!1d15.4119908!2d47.0790793?entry=ttu&g_ep=EgoyMDI2MDExMS4wIKXMDSoASAFQAw%3D%3D"
+                            target="_blank">
+                            Waagner-Biro-Straße 84A, 8020 Graz
                         </a>
                     </li>
                 </ul>
-                <div class="map-container" id="map-wrapper" style="width: 100%; height: 350px; margin: 40px auto 20px auto;">
+                <div class="map-container" id="map-wrapper"
+                    style="width: 100%; height: 350px; margin: 40px auto 20px auto;">
                     <div id="map-placeholder">
                         <p>Um die Karte zu sehen, akzeptieren Sie bitte die Cookies.</p>
                         <button id="load-map-btn">Karte laden</button>
                     </div>
 
-                    <iframe 
-                        id="google-map-iframe"
+                    <iframe id="google-map-iframe"
                         data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4659.263759435074!2d15.409415877469094!3d47.079082924254614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476e35a667e802bf%3A0xc2109ee96c2d9093!2sWaagner-Biro-Stra%C3%9Fe%2084a%2C%208020%20Graz!5e1!3m2!1sde!2sat!4v1768486140155!5m2!1sde!2sat"
-                        width="100%"
-                        height="100%"
-                        style="border:0; display:none;" 
-                        allowfullscreen=""
-                        loading="lazy"
+                        width="100%" height="100%" style="border:0; display:none;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
@@ -124,7 +127,8 @@
         </div>
     </main>
 
-    <script src="layout.js"></script> 
-    <script src="script.js"></script> 
+    <script src="layout.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

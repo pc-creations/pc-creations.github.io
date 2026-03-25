@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     const headerHTML = `
     <header>
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.insertAdjacentHTML("beforeend", footerHTML);
 
     const path = window.location.pathname;
-    const page = path.split("/").pop(); 
+    const page = path.split("/").pop();
 
     const links = document.querySelectorAll("nav ul li a");
     links.forEach(link => link.classList.remove("active"));
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.insertAdjacentHTML("beforeend", cookieHTML);
 
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
 
     gtag('consent', 'default', {
         'ad_storage': 'denied',
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const banner = document.getElementById("cookie-banner");
     const acceptBtn = document.getElementById("cookie-accept");
     const declineBtn = document.getElementById("cookie-decline");
-    
+
     const consent = localStorage.getItem("cookieConsent");
 
     if (consent === "accepted") {
@@ -132,32 +132,32 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         loadGoogleMaps();
     } else if (consent === "declined") {
-        if(banner) banner.style.display = "none";
+        if (banner) banner.style.display = "none";
     } else {
-        if(banner) banner.style.display = "block";
+        if (banner) banner.style.display = "block";
     }
 
     if (acceptBtn) {
-        acceptBtn.addEventListener("click", function() {
+        acceptBtn.addEventListener("click", function () {
             localStorage.setItem("cookieConsent", "accepted");
-            if(banner) banner.style.display = "none";
-            
+            if (banner) banner.style.display = "none";
+
             gtag('consent', 'update', {
                 'ad_storage': 'granted',
                 'ad_user_data': 'granted',
                 'ad_personalization': 'granted',
                 'analytics_storage': 'granted'
             });
-            
+
             loadGoogleMaps();
         });
     }
 
     if (declineBtn) {
-        declineBtn.addEventListener("click", function() {
+        declineBtn.addEventListener("click", function () {
             localStorage.setItem("cookieConsent", "declined");
-            if(banner) banner.style.display = "none";
-            
+            if (banner) banner.style.display = "none";
+
             gtag('consent', 'update', {
                 'ad_storage': 'denied',
                 'ad_user_data': 'denied',
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const loadMapBtn = document.getElementById("load-map-btn");
     if (loadMapBtn) {
-        loadMapBtn.addEventListener("click", function(e) {
+        loadMapBtn.addEventListener("click", function (e) {
             e.preventDefault();
             loadGoogleMaps();
         });
@@ -177,9 +177,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const settingsLink = document.getElementById("open-cookie-settings");
     if (settingsLink) {
-        settingsLink.addEventListener("click", function(e) {
+        settingsLink.addEventListener("click", function (e) {
             e.preventDefault();
-            if(banner) banner.style.display = "block";
+            if (banner) banner.style.display = "block";
         });
     }
 });
