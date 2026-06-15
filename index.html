@@ -53,13 +53,13 @@
 
     <!-- Dark Mode initialization to prevent FOUC -->
     <script>
-        (function() {
+        (function () {
             try {
                 var theme = localStorage.getItem('theme');
                 if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                     document.documentElement.classList.add('dark-mode');
                 }
-            } catch (e) {}
+            } catch (e) { }
         })();
     </script>
 </head>
@@ -74,7 +74,7 @@
     <div id="header-placeholder"></div>
     <main>
         <section id="start">
-            <h1>Ihr Partner für IT-Lösungen & PC-Konfigurationen</h1>
+            <h1>Ihr Partner für IT&#8209;Lösungen & PC&#8209;Konfigurationen</h1>
             <p>
                 Ich biete Ihnen professionelle <strong>IT-Lösungen</strong> für zu Hause und erstelle individuelle
                 <strong>PC-Konfigurationen</strong>. Egal ob maßgeschneiderter Gaming-PC oder schnelle Hilfe bei
@@ -153,11 +153,11 @@
                 <em>"From concept to creation - by hand and heart."</em>
             </p>
 
-            <p class="social-link">
+            <p class="social-link social-icons">
                 <a href="https://www.linkedin.com/in/samuel-traussnig/" target="_blank"
-                    aria-label="LinkedIn Profil aufrufen" class="contact-link-flex">
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                        viewBox="0 0 24 24" fill="#0077b5">
+                    aria-label="LinkedIn Profil aufrufen">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>

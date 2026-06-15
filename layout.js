@@ -191,25 +191,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Theme Toggle Logic
     const themeToggleBtn = document.getElementById("theme-toggle");
+    const root = document.documentElement;
     const currentTheme = localStorage.getItem("theme");
 
-    // Initialize theme based on localStorage or system preference
-    if (currentTheme === "dark" || (!currentTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-        document.body.classList.add("dark-mode");
-        if (themeToggleBtn) themeToggleBtn.textContent = "☀️";
+    // Helper to apply or remove dark mode
+    function applyDarkMode(isDark) {
+        if (isDark) {
+            root.classList.add("dark-mode");
+            document.body.classList.add("dark-mode");
+            if (themeToggleBtn) themeToggleBtn.textContent = "☀️";
+        } else {
+            root.classList.remove("dark-mode");
+            document.body.classList.remove("dark-mode");
+            if (themeToggleBtn) themeToggleBtn.textContent = "🌙";
+        }
     }
+
+    // Initialize theme based on localStorage or system preference
+    const systemDarkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    if (currentTheme === "dark" || (!currentTheme && systemDarkQuery.matches)) {
+        applyDarkMode(true);
+    } else {
+        applyDarkMode(false);
+    }
+
+    // React to OS-level dark/light mode changes in real time
+    systemDarkQuery.addEventListener("change", function (e) {
+        // Only auto-switch if the user hasn't manually set a preference
+        if (!localStorage.getItem("theme")) {
+            applyDarkMode(e.matches);
+        }
+    });
 
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener("click", function () {
-            document.body.classList.toggle("dark-mode");
-            let theme = "light";
-            if (document.body.classList.contains("dark-mode")) {
-                theme = "dark";
-                themeToggleBtn.textContent = "☀️";
-            } else {
-                themeToggleBtn.textContent = "🌙";
-            }
-            localStorage.setItem("theme", theme);
+            const isDark = root.classList.contains("dark-mode");
+            applyDarkMode(!isDark);
+            localStorage.setItem("theme", isDark ? "light" : "dark");
         });
     }
 });

@@ -141,7 +141,7 @@ img {
    ========================================= */
 .main-btn,
 #start button,
-.modal button,
+.modal button:not(.close-btn),
 #contact-form button,
 #load-map-btn,
 #cookie-accept,
@@ -161,7 +161,7 @@ img {
 }
 
 .main-btn,
-.modal button,
+.modal button:not(.close-btn),
 #contact-form button,
 #load-map-btn,
 #cookie-accept,
@@ -171,7 +171,7 @@ img {
 }
 
 .main-btn:hover,
-.modal button:hover,
+.modal button:not(.close-btn):hover,
 #contact-form button:hover,
 #load-map-btn:hover,
 #cookie-accept:hover,
@@ -333,7 +333,7 @@ nav a.active {
    5. SECTIONS (Start, About, Contact)
    ========================================= */
 section {
-    margin-bottom: 75px;
+    margin-bottom: 55px;
     position: relative;
 }
 
@@ -351,7 +351,7 @@ section:last-of-type {
 
 #start {
     text-align: center;
-    padding: 60px 20px;
+    padding: 45px 20px;
     background: linear-gradient(135deg, var(--color-dark) 0%, #4a2c7a 100%);
     color: white;
     border-radius: var(--radius-std);
@@ -419,6 +419,16 @@ article:hover .service-icon {
     margin: 10px 0 25px;
     font-style: italic;
     color: var(--color-text-light);
+}
+
+#about .social-icons a {
+    color: var(--color-text-light);
+    background: rgba(0, 0, 0, 0.06);
+}
+
+#about .social-icons a:hover {
+    color: var(--color-dark);
+    background-color: var(--color-accent);
 }
 
 .contact-list {
@@ -581,17 +591,27 @@ textarea {
 }
 
 .close-btn {
-    position: absolute;
+    position: absolute !important;
     right: 20px;
     top: 20px;
-    width: 40px;
-    height: 40px;
-    background-color: #f0f0f0;
-    border-radius: 50%;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    background-color: #f0f0f0 !important;
+    border-radius: 50% !important;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
-    padding: 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 0 !important;
+    line-height: 1 !important;
+    box-sizing: border-box !important;
+    overflow: hidden;
 }
 
 .close-btn::before,
@@ -615,8 +635,8 @@ textarea {
 }
 
 .close-btn:hover {
-    background-color: #d93025;
-    transform: rotate(90deg);
+    background-color: #d93025 !important;
+    transform: scale(1.1);
 }
 
 .close-btn:hover::before,
@@ -783,7 +803,6 @@ footer {
 .social-icons a:hover {
     color: var(--color-dark);
     background-color: var(--color-accent);
-    transform: translateY(-3px);
 }
 
 .footer-right {
