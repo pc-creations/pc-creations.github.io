@@ -21,9 +21,30 @@
     <meta property="og:url" content="https://pc-creations.github.io/services.html">
     <meta name="theme-color" content="#1a0b2e">
     <link rel="stylesheet" href="style.css">
+
+    <script src="layout.js" defer></script>
+    <script src="script.js" defer></script>
+
+    <!-- Dark Mode initialization to prevent FOUC -->
+    <script>
+        (function() {
+            try {
+                var theme = localStorage.getItem('theme');
+                if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark-mode');
+                }
+            } catch (e) {}
+        })();
+    </script>
 </head>
 
 <body>
+    <noscript>
+        <div style="text-align: center; padding: 15px; background: #eee;">
+            <p>Bitte aktivieren Sie JavaScript, um das Menü zu sehen, oder scrollen Sie nach unten zu meinen <a href="#contact">Kontaktdaten</a>.</p>
+        </div>
+    </noscript>
+    <div id="header-placeholder"></div>
 
     <main>
         <h1>Meine Dienstleistungen im Detail</h1>
@@ -93,7 +114,6 @@
         </div>
     </main>
 
-    <script src="layout.js"></script>
-</body>
+    </body>
 
 </html>
