@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - PC-Creations</title>
+    <meta name="description"
+        content="Contact PC-Creations for IT support in Graz. Use the contact form or send me a message for a free quote.">
+    <meta name="keywords" content="Contact PC-Creations, IT Support Anfrage, Termin vereinbaren, PC Hilfe Graz Kontakt">
+    <meta name="author" content="Samuel Traussnig">
+    <link rel="canonical" href="https://pc-creations.github.io/contact.html">
+    <link rel="icon" type="image/jpeg" href="../logo.jpg">
+    <link rel="apple-touch-icon" href="../logo.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contact Me - PC-Creations by Samuel">
+    <meta property="og:description" content="Questions or problems? Just send me a message!">
+    <meta property="og:image" content="https://pc-creations.github.io/logo.jpg">
+    <meta property="og:url" content="https://pc-creations.github.io/contact.html">
+    <meta name="theme-color" content="#1a0b2e">
+    <link rel="stylesheet" href="../style.css">
+
+    <script src="../layout.js" defer></script>
+    <script src="../script.js" defer></script>
+
+    <!-- Dark Mode initialization to prevent FOUC -->
+    <script>
+        (function() {
+            try {
+                var theme = localStorage.getItem('theme');
+                if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark-mode');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+
+<body>
+    <noscript>
+        <div style="text-align: center; padding: 15px; background: #eee;">
+            <p>Please enable JavaScript to view the menu, or scroll down to my <a href="#contact">contact information</a>.</p>
+        </div>
+    </noscript>
+    <div id="header-placeholder"></div>
+
+    <main>
+        <h1>Contact Me</h1>
+        <p class="form-subtitle">
+            Briefly describe your request, and I will get back to you as soon as possible.
+        </p>
+
+        <div class="contact-page-layout">
+
+            <div class="contact-form-wrapper standalone">
+                <div id="form-container">
+
+                    <form id="contact-form">
+                        <input type="text" name="_gotcha" class="gotcha-input" tabindex="-1"
+                            autocomplete="off">
+
+                        <div class="name-row">
+                            <div class="input-group">
+                                <label for="vorname">First Name <span class="required">*</span></label>
+                                <input type="text" id="vorname" name="vorname" required placeholder="John">
+                            </div>
+                            <div class="input-group">
+                                <label for="nachname">Last Name <span class="required">*</span></label>
+                                <input type="text" id="nachname" name="nachname" required placeholder="Doe">
+                            </div>
+                        </div>
+
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="john.doe@example.com">
+
+                        <label for="phone">Phone (optional)</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+43 ...">
+
+                        <label for="message">Your Message <span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="5" required
+                            placeholder="I need help with..."></textarea>
+
+                        <div class="privacy-check">
+                            <input type="checkbox" id="privacy-agree-page" name="privacy-agree" required>
+                            <label for="privacy-agree-page">
+                                I have read the <a href="datenschutz.html" target="_blank">privacy policy</a>
+                                and agree to it.
+                            </label>
+                        </div>
+
+                        <button type="submit" class="main-btn submit-btn">Submit</button>
+
+                        <p id="form-error-msg" class="form-error-msg"></p>
+                    </form>
+
+                    <p class="form-info text-left">
+                        <span class="required">*</span> Required fields
+                    </p>
+                </div>
+
+                <div id="success-container" class="success-container contact-page">
+                    <h2 class="success-title dark-text">Thank You!</h2>
+                    <p>Your message has been sent successfully.<br>I will get back to you shortly.</p>
+                    <button onclick="location.reload()" class="main-btn mt-10">New Message</button>
+                </div>
+            </div>
+
+            <div class="contact-info standalone">
+                <ul class="contact-list">
+                    <li>
+                        <strong>E-Mail:</strong>
+                        <a href="mailto:pccreationsbysamuel@gmail.com" class="contact-info-email">
+                            pccreationsbysamuel@gmail.com
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Address:</strong>
+                        <a href="https://www.google.com/maps/dir//Waagner-Biro-Stra%C3%9Fe+84a,+Lend+8020+Graz,+Austria/@47.0793083,15.4100881,1070m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x476e35a667e802bf:0xc2109ee96c2d9093!2m2!1d15.4119908!2d47.0790793?entry=ttu&g_ep=EgoyMDI2MDExMS4wIKXMDSoASAFQAw%3D%3D"
+                            target="_blank">
+                            Waagner-Biro-Straße 84A, 8020 Graz
+                        </a>
+                    </li>
+                </ul>
+                <div class="map-container large" id="map-wrapper">
+                    <div id="map-placeholder">
+                        <p>To view the map, please accept cookies.</p>
+                        <button id="load-map-btn">Load Map</button>
+                    </div>
+
+                    <iframe id="google-map-iframe"
+                        data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4659.263759435074!2d15.409415877469094!3d47.079082924254614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476e35a667e802bf%3A0xc2109ee96c2d9093!2sWaagner-Biro-Stra%C3%9Fe%2084a%2C%208020%20Graz!5e1!3m2!1sde!2sat!4v1768486140155!5m2!1sde!2sat"
+                        width="100%" height="100%" class="hidden-iframe" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- EmailJS Scripts -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "q7jESIvscNX8JzD7w",
+            });
+        })();
+    </script>
+</body>
+
+</html>
