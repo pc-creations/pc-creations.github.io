@@ -29,18 +29,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     </button>
                     <div class="dropdown-content">
                         <div class="dropdown-header">${isEnglish ? 'Theme' : 'Design'}</div>
-                        <div class="dropdown-item theme-switch-wrapper" style="cursor: default;">
-                            <span>☀️</span>
-                            <label class="theme-switch" for="theme-checkbox">
-                                <input type="checkbox" id="theme-checkbox" />
-                                <div class="slider round"></div>
-                            </label>
-                            <span>🌙</span>
+                        <div class="theme-options">
+                            <button class="theme-option" data-theme="auto">${isEnglish ? 'Automatic' : 'Automatisch'}</button>
+                            <button class="theme-option" data-theme="light">${isEnglish ? 'Light' : 'Hell'}</button>
+                            <button class="theme-option" data-theme="dark">${isEnglish ? 'Dark' : 'Dunkel'}</button>
                         </div>
                         <div class="dropdown-divider"></div>
                         <div class="dropdown-header">${isEnglish ? 'Language' : 'Sprache'}</div>
-                        <a href="${isEnglish ? '../' + currentFile : currentFile}">${isEnglish ? 'German' : 'Deutsch'}</a>
-                        <a href="${isEnglish ? currentFile : 'en/' + currentFile}">${isEnglish ? 'English' : 'Englisch'}</a>
+                        <div class="theme-options">
+                            <a href="${isEnglish ? '../' + currentFile : currentFile}" class="lang-option ${!isEnglish ? 'active' : ''}">${isEnglish ? 'German' : 'Deutsch'}</a>
+                            <a href="${isEnglish ? currentFile : 'en/' + currentFile}" class="lang-option ${isEnglish ? 'active' : ''}">${isEnglish ? 'English' : 'Englisch'}</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -218,49 +217,59 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Theme Toggle Logic
-    const themeCheckbox = document.getElementById("theme-checkbox");
+    // Theme Logic
     const root = document.documentElement;
-    const currentTheme = localStorage.getItem("theme");
+    const storedTheme = localStorage.getItem("theme");
+    const validThemes = ["auto", "light", "dark"];
+    const currentTheme = validThemes.includes(storedTheme) ? storedTheme : "auto";
 
-    // Helper to apply or remove dark mode
-    function applyDarkMode(isDark) {
-        if (isDark) {
+    function applyThemeSelection(theme) {
+        const isDarkSystem = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        let applyDark = false;
+        
+        if (theme === "dark") applyDark = true;
+        else if (theme === "light") applyDark = false;
+        else if (theme === "auto") applyDark = isDarkSystem;
+
+        if (applyDark) {
             root.classList.add("dark-mode");
             root.classList.remove("light-mode");
             document.body.classList.add("dark-mode");
             document.body.classList.remove("light-mode");
-            if (themeCheckbox) themeCheckbox.checked = true;
         } else {
             root.classList.remove("dark-mode");
             root.classList.add("light-mode");
             document.body.classList.remove("dark-mode");
             document.body.classList.add("light-mode");
-            if (themeCheckbox) themeCheckbox.checked = false;
         }
+
+        // Update UI buttons
+        document.querySelectorAll('.theme-option').forEach(btn => {
+            if (btn.dataset.theme === theme) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
     }
 
     // Initialize theme based on localStorage or system preference
-    const systemDarkQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    if (currentTheme === "dark" || (!currentTheme && systemDarkQuery.matches)) {
-        applyDarkMode(true);
-    } else {
-        applyDarkMode(false);
-    }
+    applyThemeSelection(currentTheme);
 
     // React to OS-level dark/light mode changes in real time
-    systemDarkQuery.addEventListener("change", function (e) {
-        // Only auto-switch if the user hasn't manually set a preference
-        if (!localStorage.getItem("theme")) {
-            applyDarkMode(e.matches);
+    const systemDarkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    systemDarkQuery.addEventListener("change", function () {
+        if (!localStorage.getItem("theme") || localStorage.getItem("theme") === "auto") {
+            applyThemeSelection("auto");
         }
     });
 
-    if (themeCheckbox) {
-        themeCheckbox.addEventListener("change", function () {
-            const isDark = themeCheckbox.checked;
-            applyDarkMode(isDark);
-            localStorage.setItem("theme", isDark ? "dark" : "light");
+    // Add click listeners to theme options
+    document.querySelectorAll('.theme-option').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const selectedTheme = this.dataset.theme;
+            localStorage.setItem("theme", selectedTheme);
+            applyThemeSelection(selectedTheme);
         });
-    }
+    });
 });
