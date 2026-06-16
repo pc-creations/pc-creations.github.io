@@ -198,11 +198,15 @@ document.addEventListener("DOMContentLoaded", function () {
     function applyDarkMode(isDark) {
         if (isDark) {
             root.classList.add("dark-mode");
+            root.classList.remove("light-mode");
             document.body.classList.add("dark-mode");
+            document.body.classList.remove("light-mode");
             if (themeToggleBtn) themeToggleBtn.textContent = "☀️";
         } else {
             root.classList.remove("dark-mode");
+            root.classList.add("light-mode");
             document.body.classList.remove("dark-mode");
+            document.body.classList.add("light-mode");
             if (themeToggleBtn) themeToggleBtn.textContent = "🌙";
         }
     }
