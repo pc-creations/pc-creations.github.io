@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <nav>
             <div class="nav-left">
                 <a href="index.html" id="logo-link">
-                    <img src="${basePath}logo.jpg" alt="PC-Creations Logo" width="100">
+                    <img src="${basePath}logo.png" alt="PC-Creations Logo" width="100">
                 </a>
             </div>
             
