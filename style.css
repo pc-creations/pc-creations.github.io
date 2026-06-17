@@ -7,7 +7,7 @@
     --color-accent: #00d2ff;
     --color-bg: #f9f9f9;
     --color-text: #333;
-    --color-text-light: #666;
+    --color-text-light: #555;
     --border-color: #eee;
     --radius-std: 12px;
     --radius-btn: 5px;
@@ -297,7 +297,8 @@ nav ul.nav-center {
     padding: 0;
 }
 
-.nav-left, .nav-right {
+.nav-left,
+.nav-right {
     display: flex;
     flex: 1;
 }
@@ -343,11 +344,11 @@ nav ul.nav-center {
     top: 100%;
     background-color: var(--color-dark);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
     z-index: 1001;
     border-radius: 4px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .settings-dropdown:hover .dropdown-content {
@@ -357,18 +358,19 @@ nav ul.nav-center {
 .dropdown-header {
     padding: 8px 16px;
     font-size: 0.8rem;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .dropdown-divider {
     height: 1px;
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
     margin: 4px 0;
 }
 
-.dropdown-item, .dropdown-content a {
+.dropdown-item,
+.dropdown-content a {
     color: white !important;
     padding: 10px 16px;
     text-decoration: none;
@@ -384,7 +386,8 @@ nav ul.nav-center {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.dropdown-item:hover, .dropdown-content a:hover {
+.dropdown-item:hover,
+.dropdown-content a:hover {
     background-color: rgba(255, 255, 255, 0.1) !important;
     color: var(--color-accent) !important;
 }
@@ -397,7 +400,8 @@ nav ul.nav-center {
     gap: 5px;
 }
 
-.theme-option, .lang-option {
+.theme-option,
+.lang-option {
     background: transparent;
     color: white;
     border: 1px solid transparent;
@@ -410,11 +414,13 @@ nav ul.nav-center {
     transition: all 0.3s ease;
 }
 
-.theme-option:hover, .lang-option:hover {
+.theme-option:hover,
+.lang-option:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.theme-option.active, .lang-option.active {
+.theme-option.active,
+.lang-option.active {
     border-color: var(--color-accent);
     background-color: rgba(0, 210, 255, 0.1);
     color: var(--color-accent) !important;
@@ -937,34 +943,259 @@ footer {
 }
 
 /* =========================================
-   8. COOKIE BANNER
+   8. COOKIE BANNER (MODAL)
    ========================================= */
-#cookie-banner {
+.cookie-banner-wrapper {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    max-width: 600px;
-    background-color: #fff;
-    border-left: 5px solid var(--color-accent);
-    border-radius: 8px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
-    padding: 25px;
+    inset: 0;
     z-index: 9999;
-    animation: slideUp 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.cookie-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(26, 11, 46, 0.6);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.cookie-modal {
+    position: relative;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    animation: slideUpSubtle 0.4s ease-out forwards;
+}
+
+.cookie-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.cookie-icon {
+    width: 44px;
+    height: 44px;
+    background-color: rgba(0, 210, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.cookie-lang-switch {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.cookie-lang-switch button {
+    color: var(--color-text-light);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cookie-lang-switch button.active {
+    background: var(--color-dark);
+    color: white;
+}
+
+.cookie-modal h2 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    text-align: left;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+}
+
+.cookie-modal h2::after {
+    display: none;
+}
+
+.cookie-modal p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.cookie-legal-link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.cookie-legal-link:hover {
+    color: var(--color-accent);
+}
+
+.cookie-toggles {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.cookie-toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cookie-toggle-info p.toggle-title {
+    font-weight: bold;
+    color: var(--color-primary);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.cookie-toggle-info p.toggle-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-switch input:checked+.toggle-slider {
+    background-color: var(--color-accent);
+}
+
+.toggle-switch input:checked+.toggle-slider:before {
+    transform: translateX(20px);
+}
+
+.toggle-switch input:disabled+.toggle-slider {
+    background-color: var(--color-primary);
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.toggle-switch input:disabled:checked+.toggle-slider:before {
+    transform: translateX(20px);
 }
 
 .cookie-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: flex-end;
-    margin-top: 20px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
-.cookie-links-text a {
-    color: #0077b5;
-    text-decoration: underline;
+.cookie-buttons button {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-necessary {
+    background-color: #f0f0f0;
+    color: var(--color-text);
+}
+
+.btn-necessary:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-save {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-save:hover {
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+}
+
+.btn-accept-all {
+    width: 100%;
+    background: transparent;
+    color: var(--color-primary);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.btn-accept-all:hover {
+    color: var(--color-accent);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUpSubtle {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* =========================================
@@ -1007,7 +1238,8 @@ footer {
         padding: 15px 10px;
     }
 
-    .nav-left, .nav-right {
+    .nav-left,
+    .nav-right {
         justify-content: center;
         width: 100%;
         margin: 5px 0;
@@ -1064,14 +1296,10 @@ footer {
     }
 
     .cookie-buttons {
-        flex-direction: column-reverse;
-    }
-
-    #cookie-accept,
-    #cookie-decline {
-        width: 100%;
+        grid-template-columns: 1fr;
     }
 }
+
 
 /* =========================================
    10. SERVICES PAGE
@@ -1156,7 +1384,7 @@ footer {
         border-color: #444;
     }
 
-    body:not(.light-mode) #cookie-banner {
+    body:not(.light-mode) .cookie-modal {
         background-color: #1e1e1e;
     }
 
@@ -1196,8 +1424,34 @@ footer {
     border-color: #444;
 }
 
-.dark-mode #cookie-banner {
+.dark-mode .cookie-modal {
     background-color: #1e1e1e;
+}
+
+.dark-mode .btn-necessary {
+    background-color: #333;
+    color: white;
+}
+
+.dark-mode .btn-necessary:hover {
+    background-color: #444;
+}
+
+.dark-mode .cookie-lang-switch button {
+    color: #aaa;
+}
+
+.dark-mode .cookie-lang-switch button.active {
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+}
+
+.dark-mode .btn-accept-all {
+    color: var(--color-accent);
+}
+
+.dark-mode .btn-accept-all:hover {
+    color: white;
 }
 
 .dark-mode #start {

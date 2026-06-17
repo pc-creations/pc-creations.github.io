@@ -95,25 +95,71 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("nav-home").classList.add("active");
     }
 
-    const cookieHTML = `
-    <div id="cookie-banner" style="display: none;">
-        <div class="cookie-content">
-            <h3>🍪 ${isEnglish ? 'Cookie Settings' : 'Cookie-Einstellungen'}</h3>
-            <p>
-                ${isEnglish ? 
-                'We use cookies and external services. Some are essential (for the site to function). Others help us improve this website (statistics). Since we use <strong>Google Analytics</strong> and <strong>Google Maps</strong>, data may be transferred to the US. By clicking "Accept all", you consent to this processing.' : 
-                'Wir nutzen Cookies und externe Dienste. Einige sind essenziell (für die Funktion der Seite). Andere helfen uns, diese Webseite zu verbessern (Statistiken). Da wir <strong>Google Analytics</strong> und <strong>Google Maps</strong> nutzen, können Daten in die USA übertragen werden. Mit Klick auf "Alle akzeptieren" willigen Sie in diese Verarbeitung ein.'}
-            </p>
-            <p class="cookie-links-text">
-                ${isEnglish ? 'You can change or revoke your decision at any time.' : 'Sie können Ihre Entscheidung jederzeit ändern oder widerrufen.'}
-                <br>
-                <a href="impressum.html">${isEnglish ? 'Imprint' : 'Impressum'}</a> | <a href="datenschutz.html">${isEnglish ? 'Privacy Policy' : 'Datenschutz'}</a>
-            </p>
-            
-            <div class="cookie-buttons">
-                <button id="cookie-decline">${isEnglish ? 'Essential only' : 'Nur notwendige'}</button>
-                <button id="cookie-accept">${isEnglish ? 'Accept all' : 'Alle akzeptieren'}</button>
+    function renderCookieBannerContent(isEng) {
+        return `
+            <div class="cookie-header">
+                <div class="cookie-icon">🍪</div>
+                <div class="cookie-lang-switch">
+                    <button class="lang-switch-btn ${!isEng ? 'active' : ''}" data-lang="de">DE</button>
+                    <button class="lang-switch-btn ${isEng ? 'active' : ''}" data-lang="en">EN</button>
+                </div>
             </div>
+            
+            <h2>${isEng ? 'Cookie Settings' : 'Cookie-Einstellungen'}</h2>
+            <p>
+                ${isEng ? 
+                'This website uses cookies and similar technologies to improve the user experience, analyze traffic and embed external services like Google Maps. By clicking "Accept all", you consent to this processing.' : 
+                'Diese Webseite verwendet Cookies und ähnliche Technologien, um das Nutzererlebnis zu verbessern, den Traffic zu analysieren und externe Dienste wie Google Maps einzubinden. Mit Klick auf "Alle akzeptieren" willigen Sie in diese Verarbeitung ein.'}
+                <br><br>
+                <a href="impressum.html" class="cookie-legal-link">${isEng ? 'Imprint' : 'Impressum'}</a> | <a href="datenschutz.html" class="cookie-legal-link">${isEng ? 'Privacy Policy' : 'Datenschutz'}</a>
+            </p>
+
+            <div class="cookie-toggles">
+                <div class="cookie-toggle-row">
+                    <div class="cookie-toggle-info">
+                        <p class="toggle-title">${isEng ? 'Necessary' : 'Notwendig'}</p>
+                        <p class="toggle-desc">${isEng ? 'Required for basic functions.' : 'Für die Grundfunktionen erforderlich.'}</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="cookie-necessary" checked disabled>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="cookie-toggle-row">
+                    <div class="cookie-toggle-info">
+                        <p class="toggle-title">${isEng ? 'Functional (Maps)' : 'Funktionell (Maps)'}</p>
+                        <p class="toggle-desc">${isEng ? 'Embeds Google Maps.' : 'Bindet Google Maps ein.'}</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="cookie-functional">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="cookie-toggle-row">
+                    <div class="cookie-toggle-info">
+                        <p class="toggle-title">${isEng ? 'Analytics' : 'Statistik'}</p>
+                        <p class="toggle-desc">${isEng ? 'Helps us improve the website.' : 'Hilft uns, die Webseite zu verbessern.'}</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="cookie-analytics">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="cookie-buttons">
+                <button id="cookie-decline" class="btn-necessary">${isEng ? 'Necessary only' : 'Nur Notwendige'}</button>
+                <button id="cookie-save" class="btn-save">${isEng ? 'Save selection' : 'Auswahl bestätigen'}</button>
+            </div>
+            <button id="cookie-accept" class="btn-accept-all">${isEng ? 'Accept all' : 'Alle akzeptieren'}</button>
+        `;
+    }
+
+    const cookieHTML = `
+    <div id="cookie-banner" class="cookie-banner-wrapper" style="display: none;">
+        <div class="cookie-backdrop"></div>
+        <div class="cookie-modal" id="cookie-modal-content">
+            ${renderCookieBannerContent(isEnglish)}
         </div>
     </div>
     `;
@@ -152,52 +198,110 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const banner = document.getElementById("cookie-banner");
-    const acceptBtn = document.getElementById("cookie-accept");
-    const declineBtn = document.getElementById("cookie-decline");
 
-    const consent = localStorage.getItem("cookieConsent");
+    let consentData = null;
+    try {
+        const stored = localStorage.getItem("cookieConsent");
+        if (stored === "accepted") {
+            consentData = { functional: true, analytics: true };
+        } else if (stored === "declined") {
+            consentData = { functional: false, analytics: false };
+        } else if (stored) {
+            consentData = JSON.parse(stored);
+        }
+    } catch(e) {}
 
-    if (consent === "accepted") {
-        gtag('consent', 'update', {
-            'ad_storage': 'granted',
-            'ad_user_data': 'granted',
-            'ad_personalization': 'granted',
-            'analytics_storage': 'granted'
-        });
-        loadGoogleMaps();
-    } else if (consent === "declined") {
-        if (banner) banner.style.display = "none";
-    } else {
-        if (banner) banner.style.display = "block";
-    }
-
-    if (acceptBtn) {
-        acceptBtn.addEventListener("click", function () {
-            localStorage.setItem("cookieConsent", "accepted");
-            if (banner) banner.style.display = "none";
-
+    function applyConsent(data) {
+        if (data.analytics) {
             gtag('consent', 'update', {
                 'ad_storage': 'granted',
                 'ad_user_data': 'granted',
                 'ad_personalization': 'granted',
                 'analytics_storage': 'granted'
             });
-
-            loadGoogleMaps();
-        });
-    }
-
-    if (declineBtn) {
-        declineBtn.addEventListener("click", function () {
-            localStorage.setItem("cookieConsent", "declined");
-            if (banner) banner.style.display = "none";
-
+        } else {
             gtag('consent', 'update', {
                 'ad_storage': 'denied',
                 'ad_user_data': 'denied',
                 'ad_personalization': 'denied',
                 'analytics_storage': 'denied'
             });
+        }
+
+        if (data.functional) {
+            loadGoogleMaps();
+        }
+    }
+
+    if (consentData) {
+        applyConsent(consentData);
+        
+        const toggleFunctional = document.getElementById("cookie-functional");
+        const toggleAnalytics = document.getElementById("cookie-analytics");
+        if (toggleFunctional) toggleFunctional.checked = consentData.functional;
+        if (toggleAnalytics) toggleAnalytics.checked = consentData.analytics;
+    } else {
+        const isLegalPage = page === 'datenschutz.html' || page === 'impressum.html';
+        if (banner && !isLegalPage) banner.style.display = "flex";
+    }
+
+    function saveAndClose(data) {
+        localStorage.setItem("cookieConsent", JSON.stringify(data));
+        applyConsent(data);
+        if (banner) banner.style.display = "none";
+        
+        const toggleFunctional = document.getElementById("cookie-functional");
+        const toggleAnalytics = document.getElementById("cookie-analytics");
+        if (toggleFunctional) toggleFunctional.checked = data.functional;
+        if (toggleAnalytics) toggleAnalytics.checked = data.analytics;
+
+        
+        // Redirect if language was changed in banner
+        if (banner.dataset.selectedLang) {
+            const wantsEnglish = banner.dataset.selectedLang === 'en';
+            if (wantsEnglish !== isEnglish) {
+                const currentFile = window.location.pathname.split("/").pop() || "index.html";
+                if (wantsEnglish) {
+                    window.location.href = isEnglish ? currentFile : 'en/' + currentFile;
+                } else {
+                    window.location.href = isEnglish ? '../' + currentFile : currentFile;
+                }
+            }
+        }
+    }
+
+    if (banner) {
+        banner.addEventListener("click", function(e) {
+            if (e.target.closest("#cookie-accept")) {
+                saveAndClose({ functional: true, analytics: true });
+            } else if (e.target.closest("#cookie-decline")) {
+                saveAndClose({ functional: false, analytics: false });
+            } else if (e.target.closest("#cookie-save")) {
+                const toggleFunctional = document.getElementById("cookie-functional");
+                const toggleAnalytics = document.getElementById("cookie-analytics");
+                saveAndClose({
+                    functional: toggleFunctional ? toggleFunctional.checked : false,
+                    analytics: toggleAnalytics ? toggleAnalytics.checked : false
+                });
+            } else if (e.target.closest(".lang-switch-btn")) {
+                const btn = e.target.closest(".lang-switch-btn");
+                const newIsEng = btn.dataset.lang === "en";
+                
+                // Store the selected language
+                banner.dataset.selectedLang = newIsEng ? 'en' : 'de';
+                
+                const toggleFunctional = document.getElementById("cookie-functional");
+                const toggleAnalytics = document.getElementById("cookie-analytics");
+                const funcState = toggleFunctional ? toggleFunctional.checked : false;
+                const anaState = toggleAnalytics ? toggleAnalytics.checked : false;
+                
+                document.getElementById("cookie-modal-content").innerHTML = renderCookieBannerContent(newIsEng);
+                
+                const newToggleFunctional = document.getElementById("cookie-functional");
+                const newToggleAnalytics = document.getElementById("cookie-analytics");
+                if (newToggleFunctional) newToggleFunctional.checked = funcState;
+                if (newToggleAnalytics) newToggleAnalytics.checked = anaState;
+            }
         });
     }
 
@@ -213,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (settingsLink) {
         settingsLink.addEventListener("click", function (e) {
             e.preventDefault();
-            if (banner) banner.style.display = "block";
+            if (banner) banner.style.display = "flex";
         });
     }
 
