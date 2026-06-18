@@ -20,17 +20,6 @@
     <meta property="og:url" content="https://pc-creations.github.io/faq.html">
     <meta name="theme-color" content="#1a0b2e">
     <link rel="stylesheet" href="../style.css">
-    <style>
-        .construction-hint {
-            text-align: center;
-            padding: 50px;
-            color: #666;
-            background: #f9f9f9;
-            border-radius: 8px;
-            border: 1px dashed #ccc;
-            margin-top: 30px;
-        }
-    </style>
 
     <script src="../layout.js" defer></script>
     <script src="../script.js" defer></script>
@@ -59,10 +48,19 @@
     <main>
         <h1>Frequently Asked Questions</h1>
 
-        <div class="construction-hint">
-            <h3>🚧 The FAQ section will be available here soon</h3>
-            <p>We are currently compiling the most frequently asked questions for you.</p>
-            <p>Please check back later.</p>
+        <p style="text-align: center; color: var(--color-text-light); margin-bottom: 30px;">Do you have questions? Find quick answers to the most important topics here.</p>
+
+        <div class="faq-search-container">
+            <input type="text" id="faq-search" placeholder="Search FAQs...">
+        </div>
+
+        <div class="faq-container" id="faq-container">
+            <details class="faq-item faq-item-missing">
+                <summary>Didn't find your question?</summary>
+                <div class="faq-content">
+                    <p>No problem! Just send me your question via my <a href="../contact.html" style="font-weight: bold;">contact form</a>, and I'll be happy to help you personally.</p>
+                </div>
+            </details>
         </div>
     </main>
 

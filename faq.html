@@ -20,42 +20,19 @@
     <meta property="og:url" content="https://pc-creations.github.io/faq.html">
     <meta name="theme-color" content="#1a0b2e">
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        main {
-            flex: 1;
-            margin-top: 20px;
-            text-align: left;
-        }
-
-        .construction-hint {
-            text-align: center;
-            padding: 50px;
-            color: #666;
-            background: #f9f9f9;
-            border-radius: 8px;
-            border: 1px dashed #ccc;
-            margin-top: 30px;
-        }
-    </style>
 
     <script src="layout.js" defer></script>
     <script src="script.js" defer></script>
 
     <!-- Dark Mode initialization to prevent FOUC -->
     <script>
-        (function() {
+        (function () {
             try {
                 var theme = localStorage.getItem('theme');
                 if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                     document.documentElement.classList.add('dark-mode');
                 }
-            } catch (e) {}
+            } catch (e) { }
         })();
     </script>
 </head>
@@ -63,7 +40,8 @@
 <body>
     <noscript>
         <div style="text-align: center; padding: 15px; background: #eee;">
-            <p>Bitte aktivieren Sie JavaScript, um das Menü zu sehen, oder scrollen Sie nach unten zu meinen <a href="#contact">Kontaktdaten</a>.</p>
+            <p>Bitte aktivieren Sie JavaScript, um das Menü zu sehen, oder scrollen Sie nach unten zu meinen <a
+                    href="#contact">Kontaktdaten</a>.</p>
         </div>
     </noscript>
     <div id="header-placeholder"></div>
@@ -71,13 +49,22 @@
     <main>
         <h1>Frequently Asked Questions</h1>
 
-        <div class="construction-hint">
-            <h3>🚧 Hier entsteht demnächst der FAQ-Bereich</h3>
-            <p>Wir sammeln gerade die häufigsten Fragen für Sie.</p>
-            <p>Bitte schauen Sie zu einem späteren Zeitpunkt wieder vorbei.</p>
+        <p style="text-align: center; color: var(--color-text-light); margin-bottom: 30px;">Haben Sie Fragen? Hier finden Sie schnelle Antworten auf die wichtigsten Themen.</p>
+
+        <div class="faq-search-container">
+            <input type="text" id="faq-search" placeholder="FAQs durchsuchen...">
+        </div>
+
+        <div class="faq-container" id="faq-container">
+            <details class="faq-item faq-item-missing">
+                <summary>Ihre Frage war nicht dabei?</summary>
+                <div class="faq-content">
+                    <p>Kein Problem! Senden Sie mir Ihre Frage einfach über mein <a href="contact.html" style="font-weight: bold;">Kontaktformular</a>, und ich helfe Ihnen gerne persönlich weiter.</p>
+                </div>
+            </details>
         </div>
     </main>
 
-    </body>
+</body>
 
 </html>

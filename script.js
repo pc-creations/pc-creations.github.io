@@ -101,4 +101,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
         });
     }
+
+    // FAQ Search Funktionalität
+    const faqSearchInput = document.getElementById("faq-search");
+    if (faqSearchInput) {
+        faqSearchInput.addEventListener("input", function () {
+            const searchTerm = this.value.toLowerCase();
+            const faqItems = document.querySelectorAll(".faq-searchable");
+
+            faqItems.forEach(item => {
+                const questionText = item.querySelector("summary").innerText.toLowerCase();
+                const answerText = item.querySelector(".faq-content").innerText.toLowerCase();
+
+                if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+    }
 });
